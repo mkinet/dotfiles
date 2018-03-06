@@ -37,6 +37,8 @@ Plugin 'davidhalter/jedi-vim'
 " Git support
 Plugin 'tpope/vim-fugitive'
 
+" color scheme
+Plugin 'morhetz/gruvbox'
 call vundle#end()            " required
 filetype plugin indent on    " required
 """" END Vundle Configuration 
