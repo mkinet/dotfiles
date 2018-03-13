@@ -18,7 +18,7 @@ nnoremap <C-H> <C-W><C-H>
 
 
 " Helps force plugins to load correctly when it is turned back on below
-filetype off
+filetype on
 """" START Vundle Configuration 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -62,7 +62,7 @@ let mapleader = ","
 set modelines=0
 
 " Show line numbers
-set number
+set number relativenumber
 
 " Show file stats
 set ruler
@@ -117,7 +117,7 @@ map <leader>q gqip
 " Visualize tabs and newlines
 set listchars=tab:▸\ ,eol:¬
 " Uncomment this to enable by default:
-" set list " To enable by default
+set list " To enable by default
 " Or use your leader key + l to toggle on/off
 map <leader>l :set list!<CR> " Toggle tabs and EOL
 
