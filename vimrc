@@ -131,7 +131,7 @@ let g:solarized_termtrans=1
 colorscheme gruvbox
 
 " execute python script
-autocmd FileType python nnoremap <buffer> <leader>r :exec '!clear; python' shellescape(@%, 1)<cr>
+autocmd FileType python nnoremap <buffer> <leader>py :exec '!clear; python' shellescape(@%, 1)<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic Configuration
 let g:syntastic_mode_map = { 'mode': 'passive',
@@ -152,4 +152,7 @@ let g:autopep8_max_line_length=79
 autocmd FileType python noremap <leader>p :call Autopep8()<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" jedi-vim
+"
+" Do not open a preview docstring window
+autocmd FileType python setlocal completeopt-=preview
