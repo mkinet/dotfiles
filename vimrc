@@ -152,4 +152,7 @@ let g:autopep8_max_line_length=79
 autocmd FileType python noremap <leader>p :call Autopep8()<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Jedi-Vim 
+let g:jedi#show_call_signatures = 2
+autocmd FileType python setlocal completeopt-=preview
 
