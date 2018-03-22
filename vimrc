@@ -156,3 +156,4 @@ autocmd FileType python noremap <leader>p :call Autopep8()<CR>
 "
 " Do not open a preview docstring window
 autocmd FileType python setlocal completeopt-=preview
+let g:jedi#show_call_signatures = 2
