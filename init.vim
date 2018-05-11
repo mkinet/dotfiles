@@ -4,6 +4,7 @@
 " possible, as it has side effects.
 set nocompatible
 
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " Leader - ( Comma )
 let mapleader = ","
 
@@ -21,7 +22,6 @@ set autoread      " Reload files changed outside vim
 au FocusGained,BufEnter * :silent! !
 
 "Set default font in mac vim and gvim
-set guifont=Inconsolata\ for\ Powerline:h24
 set cursorline    " highlight the current line
 set visualbell    " stop that ANNOYING beeping
 set wildmenu
@@ -45,19 +45,19 @@ set expandtab
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
 
-" Make it obvious where 100 characters is
-set textwidth=89
+" Make it obvious where 80 characters is
+set textwidth=79
 " set formatoptions=cq
 set formatoptions=qrn1
 set wrapmargin=0
-" set colorcolumn=89
+" set colorcolumn=79
 
 " Numbers
 set number
 set numberwidth=5
 
 " Open new split panes to right and bottom, which feels more natural
-" set splitbelow
+set splitbelow
 set splitright
 
 " Auto resize Vim splits to active split
@@ -74,21 +74,22 @@ set sidescroll=1
 
 "Toggle relative numbering, and set to absolute on loss of focus or insert mode
 set rnu
-function! ToggleNumbersOn()
-    set nu!
-    set rnu
-endfunction
-function! ToggleRelativeOn()
-    set rnu!
-    set nu
-endfunction
-autocmd FocusLost * call ToggleRelativeOn()
-autocmd FocusGained * call ToggleRelativeOn()
-autocmd InsertEnter * call ToggleRelativeOn()
-autocmd InsertLeave * call ToggleRelativeOn()
-
+" THIS DOES NOT WORK PROPERLY
+" function! ToggleNumbersOn()
+"     set nu!
+"     set rnu
+" endfunction
+" function! ToggleRelativeOn()
+"     set rnu!
+"     set nu
+" endfunction
+" autocmd FocusLost * call ToggleRelativeOn()
+" autocmd FocusGained * call ToggleRelativeOn()
+" autocmd InsertEnter * call ToggleRelativeOn()
+" autocmd InsertLeave * call ToggleRelativeOn()
+"
 "Use enter to create new lines w/o entering insert mode
-nnoremap <CR> O<Esc>
+"nnoremap <CR> O<Esc>
 "Below is to fix issues with the ABOVE mappings in quickfix window
 autocmd CmdwinEnter * nnoremap <CR> <CR>
 autocmd BufReadPost quickfix nnoremap <CR> <CR>
@@ -101,7 +102,7 @@ nnoremap <C-l> <C-w>l
 " <c-h> is interpreted as <bs> in neovim
 " This is a bandaid fix until the team decides how
 " they want to handle fixing it...(https://github.com/neovim/neovim/issues/2048)
-nnoremap <silent> <bs> :TmuxNavigateLeft<cr>
+" nnoremap <silent> <bs> :TmuxNavigateLeft<cr>
 
 " Navigate properly when lines are wrapped
 nnoremap j gj
@@ -116,9 +117,6 @@ set diffopt+=vertical
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
-if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
-  syntax on
-endif
 
 " Load up all of our plugins
 if filereadable(expand("~/.vimrc.bundles"))
@@ -179,6 +177,25 @@ nnoremap <leader><leader> <c-^>
 " Stay in visual mode after indenting
 vnoremap < <gv
 vnoremap > >gv
+
+" open new vertical buffer
+nnoremap <leader>v :vnew<CR>
+" open new horizontal buffer
+nnoremap <leader>h :new<CR>
+
+" open terminal window in insert mode vertical buffer to the right
+au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+nnoremap <leader>t :vnew<CR>:terminal<CR>i
+nnoremap <leader>ht :new<CR>:terminal<CR>i
+
+
+" improved keyboard support for navigation (especially terminal)
+" https://neovim.io/doc/user/nvim_terminal_emulator.html
+tnoremap <Esc> <C-\><C-n>
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-l> <C-\><C-n><C-w>l
 
 " Color scheme (terminal)
 set background=dark
@@ -251,11 +268,11 @@ let g:deoplete#enable_at_startup=1
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " neomake Configuration
-let g:neomake_python_enabled_makers=['flake8']
+let g:neomake_python_enabled_makers=['pylint']
 let g:neomake_open_list = 2
 let g:neomake_highlight_lines = 1
 
-autocmd! BufWritePost * Neomake
+" autocmd! BufWritePost * Neomake
 
 nnoremap <leader>l :Neomake<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -286,5 +303,5 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 " quicker acces to toggle comment
-nmap <leader><Tab> <leader>c<Space>gv
-vmap <leader><Tab> <leader>c<Space>gv
+nmap <leader><Tab> <leader>c<Space>
+vmap <leader><Tab> <leader>c<Space>
