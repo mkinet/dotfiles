@@ -1,3 +1,5 @@
+" Original version :
+" https://github.com/colbycheeze/dotfiles/blob/master/vimrc (around mai2018)
 " Type :so % to refresh .vimrc after making changes
 
 " Use Vim settings, rather then Vi settings. This setting must be as early as
@@ -61,10 +63,10 @@ set splitbelow
 set splitright
 
 " Auto resize Vim splits to active split
-set winwidth=104
+set winwidth=100
 set winheight=5
 set winminheight=5
-set winheight=999
+set winheight=100
 
 " ================ Scrolling ========================
 
@@ -89,10 +91,20 @@ set rnu
 " autocmd InsertLeave * call ToggleRelativeOn()
 "
 "Use enter to create new lines w/o entering insert mode
-"nnoremap <CR> O<Esc>
+nnoremap <CR> O<Esc>
 "Below is to fix issues with the ABOVE mappings in quickfix window
 autocmd CmdwinEnter * nnoremap <CR> <CR>
 autocmd BufReadPost quickfix nnoremap <CR> <CR>
+
+" disable arrow keys
+noremap  <Up> <NOP>
+" noremap! <Up> <Esc>
+noremap  <Down> <NOP>
+" noremap! <Down> <Esc>
+noremap  <Left> <NOP>
+" noremap! <Left> <Esc>
+noremap  <Right> <NOP>
+" noremap! <Right> <Esc>
 
 " Quicker window movement
 nnoremap <C-j> <C-w>j
@@ -117,10 +129,8 @@ set diffopt+=vertical
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
-
-" Load up all of our plugins
-if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
+if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
+  syntax on
 endif
 
 filetype plugin indent on
@@ -139,7 +149,7 @@ map <silent><Leader><S-p> :set paste<CR>O<esc>"*]p:set nopaste<cr>"
 nnoremap <leader>q @q
 
 " bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+" nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " bind \ (backward slash) to grep shortcut
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
@@ -251,6 +261,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'Shougo/deoplete.nvim', {'do':':UpdateRemotePlugins'}
 Plug 'zchee/deoplete-jedi'
+Plug 'davidhalter/jedi-vim'
 Plug 'neomake/neomake'
 Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdcommenter'
@@ -266,6 +277,20 @@ let g:deoplete#enable_at_startup=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " deoplete-jedi Configuration
 "
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#goto_assignments_command = ''  " dynamically done for ft=python.
+let g:jedi#goto_definitions_command = ''  " dynamically done for ft=python.
+let g:jedi#use_tabs_not_buffers = 0  " current default is 1.
+let g:jedi#rename_command = '<Leader>gR'
+let g:jedi#usages_command = '<Leader>gu'
+let g:jedi#completions_enabled = 0
+let g:jedi#smart_auto_mappings = 1
+
+" Unite/ref and pydoc are more useful.
+let g:jedi#documentation_command = '<Leader>_K'
+let g:jedi#auto_close_doc = 1
+" Do not open a preview docstring window
+let g:jedi#show_call_signatures = 2
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " neomake Configuration
 let g:neomake_python_enabled_makers=['pylint']
