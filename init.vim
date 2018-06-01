@@ -6,7 +6,6 @@
 " possible, as it has side effects.
 set nocompatible
 
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " Leader - ( Comma )
 let mapleader = ","
 
@@ -48,7 +47,7 @@ set expandtab
 set list listchars=tab:»·,trail:·,nbsp:·
 
 " Make it obvious where 80 characters is
-set textwidth=79
+set textwidth=99
 " set formatoptions=cq
 set formatoptions=qrn1
 set wrapmargin=0
@@ -117,8 +116,8 @@ nnoremap <C-l> <C-w>l
 " nnoremap <silent> <bs> :TmuxNavigateLeft<cr>
 
 " Navigate properly when lines are wrapped
-nnoremap j gj
-nnoremap k gk
+" nnoremap j gj
+" nnoremap k gk
 
 " Use tab to jump between blocks, because it's easier
 nnoremap <tab> %
@@ -139,7 +138,6 @@ filetype plugin indent on
 set pastetoggle=<F2> "F2 before pasting to preserve indentation
 "Copy paste to/from clipboard
 vnoremap <C-c> "*y
-map <silent><Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
 map <silent><Leader><S-p> :set paste<CR>O<esc>"*]p:set nopaste<cr>"
 
 """ MORE AWESOME HOTKEYS
@@ -258,6 +256,8 @@ augroup END
 "
 call plug#begin('~/.local/share/nvim/plugged')
 
+" autopep8
+Plug 'tell-k/vim-autopep8'
 Plug 'tpope/vim-fugitive'
 Plug 'Shougo/deoplete.nvim', {'do':':UpdateRemotePlugins'}
 Plug 'zchee/deoplete-jedi'
@@ -266,6 +266,12 @@ Plug 'neomake/neomake'
 Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdcommenter'
 call plug#end()
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Autopep8
+let g:autopep8_disable_show_diff=1
+let g:autopep8_max_line_length=79
+autocmd FileType python noremap <leader>p :call Autopep8()<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " fugitive Configuration
 
@@ -287,7 +293,7 @@ let g:jedi#completions_enabled = 0
 let g:jedi#smart_auto_mappings = 1
 
 " Unite/ref and pydoc are more useful.
-let g:jedi#documentation_command = '<Leader>_K'
+let g:jedi#documentation_command = '<Leader>w' " like in 'what?'
 let g:jedi#auto_close_doc = 1
 " Do not open a preview docstring window
 let g:jedi#show_call_signatures = 2
@@ -308,25 +314,20 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 " nerdcommenter
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
-
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
-
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
-
 " Set a language to use its alternate delimiters by default
 let g:NERDAltDelims_java = 1
-
 " Add your own custom formats or override the defaults
 "let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-
 " Allow commenting and inverting empty lines (useful when commenting a region)
 let g:NERDCommentEmptyLines = 1
-
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
 " quicker acces to toggle comment
 nmap <leader><Tab> <leader>c<Space>
 vmap <leader><Tab> <leader>c<Space>
+
