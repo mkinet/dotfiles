@@ -62,11 +62,11 @@ set splitbelow
 set splitright
 
 " Auto resize Vim splits to active split
-set winwidth=100
-set winheight=5
-set winminheight=5
-set winheight=100
-
+" set winwidth=100
+" set winheight=5
+" set winminheight=5
+" set winheight=100
+"
 " ================ Scrolling ========================
 
 set scrolloff=8         "Start scrolling when we're 8 lines away from margins
@@ -90,7 +90,7 @@ set rnu
 " autocmd InsertLeave * call ToggleRelativeOn()
 "
 "Use enter to create new lines w/o entering insert mode
-nnoremap <CR> O<Esc>
+nnoremap <CR> O<Esc>j
 "Below is to fix issues with the ABOVE mappings in quickfix window
 autocmd CmdwinEnter * nnoremap <CR> <CR>
 autocmd BufReadPost quickfix nnoremap <CR> <CR>
@@ -252,6 +252,12 @@ augroup vimrcEx
   autocmd FileType css,scss,sass,less setlocal iskeyword+=-
 augroup END
 
+" DEBUGGING
+"
+nnoremap <leader>b oimport pdb; pdb.set_trace()<Esc>
+nnoremap <leader>B Oimport pdb; pdb.set_trace()<Esc>
+
+
 "  PLUGINS
 "
 call plug#begin('~/.local/share/nvim/plugged')
@@ -265,6 +271,7 @@ Plug 'davidhalter/jedi-vim'
 Plug 'neomake/neomake'
 Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdcommenter'
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autopep8
@@ -330,4 +337,18 @@ let g:NERDTrimTrailingWhitespace = 1
 " quicker acces to toggle comment
 nmap <leader><Tab> <leader>c<Space>
 vmap <leader><Tab> <leader>c<Space>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-tmux-navigator
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-p> :TmuxNavigatePrevious<cr>
+
+" Disable tmux navigator when zooming the Vim pane
+let g:tmux_navigator_disable_when_zoomed = 1
+
 
