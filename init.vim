@@ -263,6 +263,7 @@ nnoremap <leader>B Oimport pdb; pdb.set_trace()<Esc>
 call plug#begin('~/.local/share/nvim/plugged')
 
 " autopep8
+Plug 'morhetz/gruvbox'
 Plug 'tell-k/vim-autopep8'
 Plug 'tpope/vim-fugitive'
 Plug 'Shougo/deoplete.nvim', {'do':':UpdateRemotePlugins'}
@@ -272,6 +273,8 @@ Plug 'neomake/neomake'
 Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdcommenter'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autopep8
