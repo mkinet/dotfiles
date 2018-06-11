@@ -354,4 +354,7 @@ nnoremap <silent> <C-p> :TmuxNavigatePrevious<cr>
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
 
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-airline
+"
+let g:airline_powerline_fonts = 1
