@@ -276,6 +276,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'janko-m/vim-test'
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autopep8
@@ -380,3 +381,7 @@ let g:ctrlp_custom_ignore = {
   \ }
 " ignore files in gitignore
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-tests
+"
+
