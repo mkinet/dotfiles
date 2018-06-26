@@ -47,11 +47,11 @@ set expandtab
 set list listchars=tab:»·,trail:·,nbsp:·
 
 " Make it obvious where 80 characters is
-set textwidth=99
+set textwidth=79
 " set formatoptions=cq
 set formatoptions=qrn1
 set wrapmargin=0
-" set colorcolumn=79
+let &colorcolumn="80,".join(range(100,999),",")
 
 " Numbers
 set number
@@ -275,6 +275,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autopep8
@@ -358,3 +359,24 @@ let g:tmux_navigator_disable_when_zoomed = 1
 " vim-airline
 "
 let g:airline_powerline_fonts = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ctrlP
+"
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+" Where to start search : 1) first anacestor containing .git 2) pwd.
+let g:ctrlp_working_path_mode = 'ra'
+" if a file is already open, open it again in a new pane instead of switching
+" to the existing pane
+let g:ctrlp_switch_buffer = 'et'
+" Files to ignore
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+" ignore files in gitignore
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
