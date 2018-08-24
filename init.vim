@@ -97,13 +97,13 @@ autocmd BufReadPost quickfix nnoremap <CR> <CR>
 
 " disable arrow keys
 noremap  <Up> <NOP>
-" noremap! <Up> <Esc>
+noremap! <Up> <Esc>
 noremap  <Down> <NOP>
-" noremap! <Down> <Esc>
+noremap! <Down> <Esc>
 noremap  <Left> <NOP>
-" noremap! <Left> <Esc>
+noremap! <Left> <Esc>
 noremap  <Right> <NOP>
-" noremap! <Right> <Esc>
+noremap! <Right> <Esc>
 
 " Quicker window movement
 nnoremap <C-j> <C-w>j
@@ -194,7 +194,7 @@ nnoremap <leader>h :new<CR>
 " open terminal window in insert mode vertical buffer to the right
 au BufEnter * if &buftype == 'terminal' | :startinsert | endif
 nnoremap <leader>t :vnew<CR>:terminal<CR>i
-nnoremap <leader>ht :new<CR>:terminal<CR>i
+" nnoremap <leader>ht :new<CR>:terminal<CR>i
 
 
 " improved keyboard support for navigation (especially terminal)
@@ -277,6 +277,17 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'janko-m/vim-test'
+Plug 'heavenshell/vim-pydocstring'
+function! BuildComposer(info)
+  if a:info.status != 'unchanged' || a:info.force
+    if has('nvim')
+      !cargo build --release
+    else
+      !cargo build --release --no-default-features --features json-rpc
+    endif
+  endif
+endfunction
+Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autopep8
@@ -299,8 +310,8 @@ let g:jedi#auto_vim_configuration = 0
 let g:jedi#goto_assignments_command = ''  " dynamically done for ft=python.
 let g:jedi#goto_definitions_command = ''  " dynamically done for ft=python.
 let g:jedi#use_tabs_not_buffers = 0  " current default is 1.
-let g:jedi#rename_command = '<Leader>gR'
-let g:jedi#usages_command = '<Leader>gu'
+let g:jedi#rename_command = '<Leader>r'
+let g:jedi#usages_command = '<Leader>u'
 let g:jedi#completions_enabled = 0
 let g:jedi#smart_auto_mappings = 1
 
@@ -384,4 +395,8 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-tests
 "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-pydocstrings
+"
+nmap <silent> <leader>D <Plug>(pydocstring)
 
