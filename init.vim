@@ -143,8 +143,8 @@ map <silent><Leader><S-p> :set paste<CR>O<esc>"*]p:set nopaste<cr>"
 """ MORE AWESOME HOTKEYS
 "
 "
-" Run the q macro
-nnoremap <leader>q @q
+" Run the w macro
+nnoremap <leader>w @w
 
 " bind K to grep word under cursor
 " nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
@@ -166,7 +166,10 @@ map <leader>s <C-S>
 nnoremap <leader>x :x<cr>
 nnoremap <leader>X :q!<cr>
 
-" zoom a vim pane, <C-w>= to re-balance
+" Close file without closing buffer
+nnoremap <leader>q :bp<bar>sp<bar>bn<bar>bd<cr>
+
+" zoom a vim pane, <leader>= to re-balance
 nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
 nnoremap <leader>= :wincmd =<cr>
 
@@ -235,8 +238,8 @@ augroup vimrcEx
   " Set syntax highlighting for specific file types
   autocmd BufRead,BufNewFile *.md set filetype=markdown
 
-  " autocmd BufRead *.jsx set ft=jsx.html
-  " autocmd BufNewFile *.jsx set ft=jsx.html
+  autocmd BufRead *.jsx set ft=jsx.html
+  autocmd BufNewFile *.jsx set ft=jsx.html
 
   " Enable spellchecking for Markdown
   autocmd FileType markdown setlocal spell
@@ -399,4 +402,7 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 " vim-pydocstrings
 "
 nmap <silent> <leader>D <Plug>(pydocstring)
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-markdown-composer
+" 
+let g:markdown_composer_external_renderer='pandoc --mathjax -f markdown -s -t html '
