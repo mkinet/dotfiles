@@ -35,8 +35,7 @@ hi Normal guifg=#d9d9d9 guibg=#202020 guisp=#202020 gui=NONE ctermfg=253 ctermbg
 "hi EnumerationName -- no settings --
 "hi MoreMsg -- no settings --
 "hi SpellCap -- no settings --
-"hi DiffChange -- no settings --
-hi DiffChange guifg=NONE guibg=#5b802c guisp=#5b802c gui=NONE ctermfg=NONE ctermbg=214 cterm=NONE
+hi DiffChange guifg=NONE guibg=#f0911d guisp=#f0911d gui=NONE ctermfg=NONE ctermbg=208 cterm=NONE
 "hi SpellLocal -- no settings --
 "hi Error -- no settings --
 "hi DefinedName -- no settings --
@@ -77,7 +76,7 @@ hi Number guifg=#e66450 guibg=NONE guisp=NONE gui=NONE ctermfg=167 ctermbg=NONE 
 hi Boolean guifg=#fff200 guibg=NONE guisp=NONE gui=NONE ctermfg=11 ctermbg=NONE cterm=NONE
 hi Operator guifg=#fff200 guibg=NONE guisp=NONE gui=NONE ctermfg=11 ctermbg=NONE cterm=NONE
 hi CursorLine guifg=NONE guibg=#2d2d2d guisp=#2d2d2d gui=NONE ctermfg=NONE ctermbg=236 cterm=NONE
-hi DiffDelete guifg=NONE guibg=#8a3636 guisp=#8a3636 gui=NONE ctermfg=NONE ctermbg=95 cterm=NONE
+hi DiffDelete guifg=NONE guibg=#98971a guisp=#98971a gui=NONE ctermfg=NONE ctermbg=106 cterm=NONE
 hi CursorColumn guifg=NONE guibg=#2d2d2d guisp=#2d2d2d gui=NONE ctermfg=NONE ctermbg=236 cterm=NONE
 hi Define guifg=#c25643 guibg=NONE guisp=NONE gui=NONE ctermfg=167 ctermbg=NONE cterm=NONE
 hi Function guifg=#f0811f guibg=NONE guisp=NONE gui=NONE ctermfg=208 ctermbg=NONE cterm=NONE
