@@ -210,7 +210,8 @@ tnoremap <C-l> <C-\><C-n><C-w>l
 
 " Color scheme (terminal)
 set background=dark
-colorscheme gruvbox
+colorscheme buddy
+highlight ColorColumn ctermbg=236
 
 " AUTOCOMMANDS - Do stuff
 
@@ -374,6 +375,7 @@ let g:tmux_navigator_disable_when_zoomed = 1
 " vim-airline
 "
 let g:airline_powerline_fonts = 1
+let g:airline_theme='simple'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ctrlP
