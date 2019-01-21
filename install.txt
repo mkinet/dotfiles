@@ -1,0 +1,23 @@
+NEOVIM:
+-------
+#get init.vim from github
+
+echo "so path_to_init.vim" >> ~/.config/nvim/init.vim
+
+sudo add-apt-repository ppa:neovim-ppa/stable
+
+sudo apt-get update
+sudo apt-get install neovim
+
+# enter nvim and install plugins then quit the reenter and run :UpdateRemotePlugins.
+
+(...)
+
+# Vitrual environment
+cd /path/to/virtualenv/folder
+python3 -m venv myvirtualenv
+pip install --upgrade pip
+pip install -r requirements.txt
+
+# ipython configuration
+cp ipython_config.py ~/.ipython/profile_default/
