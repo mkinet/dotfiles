@@ -280,8 +280,11 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'janko-m/vim-test'
+" Plug 'janko-m/vim-test'
 Plug 'heavenshell/vim-pydocstring'
+Plug 'tpope/vim-vinegar'
+Plug 'mhinz/vim-grepper'
+
 function! BuildComposer(info)
   if a:info.status != 'unchanged' || a:info.force
     if has('nvim')
