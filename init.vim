@@ -56,6 +56,34 @@ let &colorcolumn="80,".join(range(100,999),",")
 " Numbers
 set number
 set numberwidth=5
+"Toggle relative numbering, and set to absolute on loss of focus or insert mode
+set rnu
+" THIS DOES NOT WORK PROPERLY
+" function! ToggleNumbersOn()
+"     set nu!
+"     set rnu
+" endfunction
+" function! ToggleRelativeOn()
+"     set rnu!
+"     set nu
+" endfunction
+" autocmd FocusLost * call ToggleRelativeOn()
+" autocmd FocusGained * call ToggleRelativeOn()
+" autocmd InsertEnter * call ToggleRelativeOn()
+" autocmd InsertLeave * call ToggleRelativeOn()
+"
+" folding
+set foldenable
+set foldlevelstart=10   " open most folds by default
+" foldlevelstart is the starting fold level for opening a new buffer. If it is
+" set to 0, all folds will be closed. Setting it to 99 would guarantee folds
+" are always open. So, setting it to 10 here ensures that only very nested
+" blocks of code are folded when opening a buffer.
+set foldmethod=indent   " fold based on indent level
+set foldnestmax=5      " 10 nested fold max
+" space open/closes folds
+nnoremap <space> za
+vnoremap <space> zf
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
@@ -73,22 +101,6 @@ set scrolloff=8         "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
 
-"Toggle relative numbering, and set to absolute on loss of focus or insert mode
-set rnu
-" THIS DOES NOT WORK PROPERLY
-" function! ToggleNumbersOn()
-"     set nu!
-"     set rnu
-" endfunction
-" function! ToggleRelativeOn()
-"     set rnu!
-"     set nu
-" endfunction
-" autocmd FocusLost * call ToggleRelativeOn()
-" autocmd FocusGained * call ToggleRelativeOn()
-" autocmd InsertEnter * call ToggleRelativeOn()
-" autocmd InsertLeave * call ToggleRelativeOn()
-"
 "Use enter to create new lines w/o entering insert mode
 nnoremap <CR> O<Esc>j
 "Below is to fix issues with the ABOVE mappings in quickfix window
@@ -210,8 +222,20 @@ tnoremap <C-l> <C-\><C-n><C-w>l
 
 " Color scheme (terminal)
 set background=dark
-colorscheme buddy
-highlight ColorColumn ctermbg=236
+" If you have vim >=8.0 or Neovim >= 0.1.5
+if (has("termguicolors"))
+ set termguicolors
+endif
+
+" For Neovim 0.1.3 and 0.1.4
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+" Theme
+syntax enable
+" colorscheme
+let g:gruvbox_contrast_dark = "hard"
+colorscheme gruvbox
+
 
 " AUTOCOMMANDS - Do stuff
 
@@ -284,6 +308,8 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'heavenshell/vim-pydocstring'
 Plug 'tpope/vim-vinegar'
 Plug 'mhinz/vim-grepper'
+Plug 'ekalinin/Dockerfile.vim'
+" Plug 'jeetsukumaran/vim-pythonsense'
 
 function! BuildComposer(info)
   if a:info.status != 'unchanged' || a:info.force
@@ -378,7 +404,7 @@ let g:tmux_navigator_disable_when_zoomed = 1
 " vim-airline
 "
 let g:airline_powerline_fonts = 1
-let g:airline_theme='simple'
+let g:airline_theme = 'gruvbox'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ctrlP
