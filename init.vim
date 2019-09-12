@@ -235,6 +235,8 @@ syntax enable
 " colorscheme
 let g:gruvbox_contrast_dark = "hard"
 colorscheme gruvbox
+" set terminal background to #050000 for exact same colorscheme
+highlight Normal ctermbg=0 guibg=#050000
 
 
 " AUTOCOMMANDS - Do stuff
@@ -310,6 +312,8 @@ Plug 'tpope/vim-vinegar'
 Plug 'mhinz/vim-grepper'
 Plug 'ekalinin/Dockerfile.vim'
 " Plug 'jeetsukumaran/vim-pythonsense'
+Plug 'mhinz/vim-signify'
+Plug 'luochen1990/rainbow'
 
 function! BuildComposer(info)
   if a:info.status != 'unchanged' || a:info.force
@@ -437,3 +441,8 @@ nmap <silent> <leader>D <Plug>(pydocstring)
 " vim-markdown-composer
 " 
 let g:markdown_composer_external_renderer='pandoc --mathjax -f markdown -s -t html '
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" rainbow_parentheses
+"
+let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+
