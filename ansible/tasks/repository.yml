@@ -1,0 +1,19 @@
+# Add specified repository into sources list.
+# - apt_repository:
+#     repo: deb http://archive.canonical.com/ubuntu hardy partner
+#     state: present
+
+# Add specified repository into sources list using specified filename.
+# - apt_repository:
+#     repo: deb http://dl.google.com/linux/chrome/deb/ stable main
+#     state: present
+#     filename: google-chrome
+
+# Remove specified repository from sources list.
+# - apt_repository:
+#     repo: deb http://archive.canonical.com/ubuntu hardy partner
+#     state: absent
+
+# Add nvim stable repository from PPA and install its signing key.
+- apt_repository:
+    repo: ppa:neovim-ppa/stable
