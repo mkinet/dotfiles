@@ -2,6 +2,45 @@
 " https://github.com/colbycheeze/dotfiles/blob/master/vimrc (around mai2018)
 " Type :so % to refresh .vimrc after making changes
 
+"  PLUGINS
+"
+call plug#begin('~/.local/share/nvim/plugged')
+
+" autopep8
+Plug 'morhetz/gruvbox'
+Plug 'tell-k/vim-autopep8'
+Plug 'tpope/vim-fugitive'
+Plug 'Shougo/deoplete.nvim', {'do':':UpdateRemotePlugins'}
+Plug 'zchee/deoplete-jedi'
+Plug 'davidhalter/jedi-vim'
+Plug 'neomake/neomake'
+Plug 'ervandew/supertab'
+Plug 'scrooloose/nerdcommenter'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'janko-m/vim-test'
+Plug 'heavenshell/vim-pydocstring'
+Plug 'tpope/vim-vinegar'
+Plug 'mhinz/vim-grepper'
+Plug 'ekalinin/Dockerfile.vim'
+" Plug 'jeetsukumaran/vim-pythonsense'
+Plug 'mhinz/vim-signify'
+Plug 'luochen1990/rainbow'
+
+function! BuildComposer(info)
+  if a:info.status != 'unchanged' || a:info.force
+    if has('nvim')
+      !cargo build --release
+    else
+      !cargo build --release --no-default-features --features json-rpc
+    endif
+  endif
+endfunction
+Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+call plug#end()
+
 " Use Vim settings, rather then Vi settings. This setting must be as early as
 " possible, as it has side effects.
 set nocompatible
@@ -288,44 +327,6 @@ nnoremap <leader>b oimport pdb; pdb.set_trace()<Esc>
 nnoremap <leader>B Oimport pdb; pdb.set_trace()<Esc>
 
 
-"  PLUGINS
-"
-call plug#begin('~/.local/share/nvim/plugged')
-
-" autopep8
-Plug 'morhetz/gruvbox'
-Plug 'tell-k/vim-autopep8'
-Plug 'tpope/vim-fugitive'
-Plug 'Shougo/deoplete.nvim', {'do':':UpdateRemotePlugins'}
-Plug 'zchee/deoplete-jedi'
-Plug 'davidhalter/jedi-vim'
-Plug 'neomake/neomake'
-Plug 'ervandew/supertab'
-Plug 'scrooloose/nerdcommenter'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'janko-m/vim-test'
-Plug 'heavenshell/vim-pydocstring'
-Plug 'tpope/vim-vinegar'
-Plug 'mhinz/vim-grepper'
-Plug 'ekalinin/Dockerfile.vim'
-" Plug 'jeetsukumaran/vim-pythonsense'
-Plug 'mhinz/vim-signify'
-Plug 'luochen1990/rainbow'
-
-function! BuildComposer(info)
-  if a:info.status != 'unchanged' || a:info.force
-    if has('nvim')
-      !cargo build --release
-    else
-      !cargo build --release --no-default-features --features json-rpc
-    endif
-  endif
-endfunction
-Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
-call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autopep8
 let g:autopep8_disable_show_diff=1
