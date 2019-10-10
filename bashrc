@@ -63,8 +63,6 @@ alias ll='ls -alFh'
 alias la='ls -A'
 alias l='ls -CF'
 alias memuse='watch -t -n 1 free -mh'
-alias nemo='ssh maxime.kinet@nemo.ds'
-alias beast='ssh -Y matlab@beastdp.ds'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -99,7 +97,6 @@ function python-docker() {
                            gamayarepository.azurecr.io/core-cpu-dev python3 $@
                  xhost -local:docker
 }
-# -v $HOME/Documents/Gamaya/Dev/satdata:/media/satdata \
 
 function ipython-docker() {
                  xhost +local:docker
@@ -178,10 +175,9 @@ function gamaya-docker() {
 alias vim=nvim
 
 # correct colors for gruvbox theme
-/home/mkinet/.config/nvim/colors/gruvbox_256palette.sh
+# /home/mkinet/.config/nvim/colors/gruvbox_256palette.sh
 
 export NVIDIA_TOKEN=OWQ1ajQzcGczc3V1N285M2F0aTcxZGljN3E6MmQ0OGJhMGYtNjFlYy00Yzk5LWFlYTEtYmNjODBiNThiMTg2
-export PL_API_KEY=037fe8dc659340eab6304ae7aa87ff7d
 # Activate vi mode
 set -o vi
 
@@ -191,10 +187,9 @@ set -o vi
 #       exec tmux
 # fi
 
-export PYTHONPATH=/home/mkinet/Documents/Gamaya/DeepLearning
-source ~/.orb-prod.sh
+# export PYTHONPATH=/home/mkinet/Documents/Gamaya/DeepLearning
 
 # Activate python3 virtualenv
 # export VIRTUAL_ENV_DISABLE_PROMPT=1
-source ~/Documents/Gamaya/Dev/virtualenv/gamaya-env/bin/activate
+# source ~/Documents/Gamaya/Dev/virtualenv/gamaya-env/bin/activate
 
