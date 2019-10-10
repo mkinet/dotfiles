@@ -4,7 +4,7 @@
 
 "  PLUGINS
 "
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 " autopep8
 Plug 'morhetz/gruvbox'
