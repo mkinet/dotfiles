@@ -191,5 +191,5 @@ set -o vi
 
 # Activate python3 virtualenv
 # export VIRTUAL_ENV_DISABLE_PROMPT=1
-# source ~/Documents/Gamaya/Dev/virtualenv/gamaya-env/bin/activate
+source ~/Developer/virtualenv/python3/bin/activate
 
