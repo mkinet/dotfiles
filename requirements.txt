@@ -4,9 +4,6 @@ scipy
 numpy
 matplotlib
 pandas
-statsmodel
-dask[complete]
 scikit-learn
-seaborn
 ipython
 jupyter
