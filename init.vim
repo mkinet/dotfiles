@@ -28,17 +28,7 @@ Plug 'ekalinin/Dockerfile.vim'
 " Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'mhinz/vim-signify'
 Plug 'luochen1990/rainbow'
-
-function! BuildComposer(info)
-  if a:info.status != 'unchanged' || a:info.force
-    if has('nvim')
-      !cargo build --release
-    else
-      !cargo build --release --no-default-features --features json-rpc
-    endif
-  endif
-endfunction
-Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 call plug#end()
 
 " Use Vim settings, rather then Vi settings. This setting must be as early as
@@ -446,4 +436,13 @@ let g:markdown_composer_external_renderer='pandoc --mathjax -f markdown -s -t ht
 " rainbow_parentheses
 "
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" markdown preview
+"
+" set to 1, the vim will refresh markdown when save the buffer or
+" leave from insert mode, default 0 is auto refresh markdown as you edit or
+" move the cursor
+" default: 0
+let g:mkdp_refresh_slow = 0
+" example
+nmap <leader>m <Plug>MarkdownPreviewToggle
