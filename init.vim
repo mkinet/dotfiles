@@ -66,11 +66,13 @@ nnoremap <silent> <leader><Space> :noh<cr> " Stop highlight after searching
 set incsearch
 set showmatch
 
-" Softtabs, 2 spaces
+" Softtabs, 4 spaces
 set tabstop=4
-set shiftwidth=2
+set shiftwidth=4
+set softtabstop=4
 set shiftround
 set expandtab
+set autoindent
 
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
