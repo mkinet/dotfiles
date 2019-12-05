@@ -77,12 +77,12 @@ set autoindent
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
 
-" Make it obvious where 80 characters is
-set textwidth=79
+" Make it obvious where 100 characters is
+set textwidth=99
 " set formatoptions=cq
 set formatoptions=qrn1
 set wrapmargin=0
-let &colorcolumn="80,".join(range(100,999),",")
+let &colorcolumn="".join(range(100,999),",")
 
 " Numbers
 set number
@@ -322,7 +322,7 @@ nnoremap <leader>B Oimport pdb; pdb.set_trace()<Esc>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autopep8
 let g:autopep8_disable_show_diff=1
-let g:autopep8_max_line_length=79
+let g:autopep8_max_line_length=99
 autocmd FileType python noremap <leader>p :call Autopep8()<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
