@@ -6,9 +6,9 @@
 "
 call plug#begin('~/.config/nvim/plugged')
 
-" autopep8
 Plug 'morhetz/gruvbox'
-Plug 'tell-k/vim-autopep8'
+" Plug 'tell-k/vim-autopep8'
+Plug 'psf/black'
 Plug 'tpope/vim-fugitive'
 Plug 'Shougo/deoplete.nvim', {'do':':UpdateRemotePlugins'}
 Plug 'zchee/deoplete-jedi'
@@ -321,10 +321,18 @@ nnoremap <leader>B Oimport pdb; pdb.set_trace()<Esc>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autopep8
-let g:autopep8_disable_show_diff=1
-let g:autopep8_max_line_length=99
-autocmd FileType python noremap <leader>p :call Autopep8()<CR>
+" let g:autopep8_disable_show_diff=1
+" let g:autopep8_max_line_length=99
+" autocmd FileType python noremap <leader>p :call Autopep8()<CR>
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Black
+let g:black_linelength=88
+" black shortcut
+autocmd FileType python noremap <leader>p :Black<CR>
+" run black on save
+autocmd BufWritePre *.py execute ':Black'
+"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " fugitive Configuration
 
@@ -352,7 +360,8 @@ let g:jedi#auto_close_doc = 1
 let g:jedi#show_call_signatures = 2
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " neomake Configuration
-let g:neomake_python_enabled_makers=['pylint']
+" let g:neomake_python_enabled_makers=['pylint']
+let g:neomake_python_enabled_makers=['flake8']
 let g:neomake_open_list = 2
 let g:neomake_highlight_lines = 1
 
