@@ -1,9 +1,4 @@
 pynvim
 jedi
-scipy
-numpy
-matplotlib
-pandas
-scikit-learn
 ipython
 jupyter
